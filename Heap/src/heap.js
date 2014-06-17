@@ -27,7 +27,7 @@ Heap.prototype.show = function() {
 
 // For you to complete:
 Heap.prototype.peek = function() {
-
+    return this._data[0];
 };
 
 Heap.prototype.insert = function(element) {
