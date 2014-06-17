@@ -46,11 +46,12 @@ Heap.prototype.insert = function(element) {
 
 Heap.prototype.extract = function() {
   var last = this._data[0];
-  this._data[0] = this._data.pop();
+  this._data[0] = this._data.length > 1 ? this._data.pop() : undefined;
   var left = this._leftChildOf(0);
   var right = this._rightChildOf(0);
   var low = this._data[right] < this._data[left] ? right : left;
   var index = 0;
+
   while( this._data[index] > this._data[low] ){
     this._swap(index,low);
     index = low;
@@ -62,3 +63,17 @@ Heap.prototype.extract = function() {
   return last;
 };
 
+var heapSort = function(array){
+  heap = new Heap();
+  var sorted = [];
+
+  while(array.length){
+    heap.insert(array.pop());
+  }
+  
+  while(heap.peek()){
+    sorted.push(heap.extract());
+  }
+
+  return sorted;
+}
